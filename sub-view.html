@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">HADI VPN - اشتراک شما</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --page-bg: #6d7c92;
+    --card-bg: #131a27;
+    --card-bg2: #171f2e;
+    --card-bg3: #1b2434;
+    --border: rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.14);
+    --text-primary: #eef1f6;
+    --text-secondary: #9aa5b8;
+    --text-muted: #6b7789;
+    --orange: #e2914f;
+    --orange2: #cf793c;
+    --orange-soft: rgba(226,145,79,0.18);
+    --green: #22c55e;
+    --green-soft: rgba(34,197,94,0.16);
+    --accent: #6c63ff;
+    --accent-light: #818cf8;
+    --blue: #2f6df0;
+    --shell-border: rgba(255,255,255,0.14);
+  }
+
+  body.light-theme {
+    --page-bg: #dfe4ee;
+    --card-bg: #ffffff;
+    --card-bg2: #f5f6fa;
+    --card-bg3: #eef0f6;
+    --border: rgba(0,0,0,0.08);
+    --border-strong: rgba(0,0,0,0.14);
+    --text-primary: #1a1f2b;
+    --text-secondary: #565f70;
+    --text-muted: #838ba0;
+    --shell-border: rgba(0,0,0,0.1);
+  }
+
+  body {
+    font-family: 'Vazirmatn', sans-serif;
+    background: var(--page-bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    direction: rtl;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--page-bg); }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.25); border-radius: 10px; }
+
+  html, body { overflow-x: hidden; }
+  img, svg { max-width: 100%; }
+
+  /* ============ TOP BAR ============ */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 16px 18px;
+    background: var(--card-bg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .topbar-id {
+    font-size: 11px;
+    font-weight: 500;
+    font-family: monospace;
+    color: var(--text-secondary);
+    background: var(--card-bg3);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 4px 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 40vw;
+  }
+  .topbar-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .icon-circle-btn {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--card-bg3);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .icon-circle-btn:hover { background: rgba(108,99,255,0.15); }
+
+  /* ============ PAGE SHELL ============ */
+  .page-shell {
+    display: flex;
+    justify-content: center;
+    padding: 18px 14px 40px;
+  }
+  .app-card {
+    width: 100%;
+    max-width: 460px;
+    background: var(--card-bg);
+    border: 1px solid var(--shell-border);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  }
+  .app-card-inner {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* ============ PROFILE CARD ============ */
+  .profile-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .profile-card-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange2) 100%);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .profile-card-body {
+    background: var(--card-bg2);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .profile-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .profile-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--card-bg3);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--orange);
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .profile-label { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+  .profile-value { font-size: 15px; font-weight: 800; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .profile-right { text-align: left; flex-shrink: 0; }
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 50px;
+    background: var(--green-soft);
+    color: var(--green);
+    border: 1px solid rgba(34,197,94,0.3);
+  }
+
+  /* ============ USAGE ROW ============ */
+  .usage-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .ring-card {
+    background: var(--card-bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .circle-chart { position: relative; width: 118px; height: 118px; }
+  .circle-chart svg { transform: rotate(-90deg); width: 118px; height: 118px; }
+  .circle-bg { fill: none; stroke: rgba(255,255,255,0.08); stroke-width: 9; }
+  body.light-theme .circle-bg { stroke: rgba(0,0,0,0.08); }
+  .circle-fg { fill: none; stroke-width: 9; stroke-linecap: round; stroke: var(--orange); transition: stroke-dashoffset 1s ease; }
+  .circle-fg.hidden-ring { visibility: hidden; }
+  .circle-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+  }
+  .circle-pct { font-size: 22px; font-weight: 800; color: var(--text-primary); display: block; line-height: 1; }
+  .ring-sub { font-size: 12px; color: var(--text-secondary); direction: ltr; text-align: center; }
+  .ring-sub b { color: var(--text-primary); font-weight: 700; }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .stat-box {
+    background: var(--card-bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    justify-content: center;
+  }
+  .stat-label { font-size: 11px; color: var(--text-muted); }
+  .stat-value { font-size: 14px; font-weight: 800; color: var(--text-primary); direction: ltr; }
+
+  /* ============ TIME REMAINING CARD ============ */
+  .time-card {
+    background: var(--card-bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    text-align: center;
+  }
+  .time-label { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+  .time-value { font-size: 24px; font-weight: 800; color: var(--orange); margin-bottom: 12px; }
+  .time-progress {
+    height: 6px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.08);
+    overflow: hidden;
+  }
+  body.light-theme .time-progress { background: rgba(0,0,0,0.08); }
+  .time-progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--orange2), var(--orange));
+    transition: width 1s ease;
+  }
+
+  /* ============ DATES ROW ============ */
+  .dates-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--card-bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .date-box { padding: 12px; text-align: center; }
+  .date-box + .date-box { border-right: 1px solid var(--border); }
+  .date-label { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+  .date-value { font-size: 12px; font-weight: 700; color: var(--text-primary); direction: ltr; }
+
+  /* ============ SECTION TITLE ============ */
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+    padding-top: 4px;
+  }
+
+  /* ============ SUB INFO CARD ============ */
+  .sub-info-card {
+    background: var(--card-bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 14px;
+  }
+  .sub-info-label { font-size: 11px; color: var(--text-muted); text-align: left; margin-bottom: 8px; }
+  .sub-info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    direction: ltr;
+  }
+  .sub-chip {
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--green);
+    background: var(--green-soft);
+    border: 1px solid rgba(34,197,94,0.3);
+    border-radius: 6px;
+    padding: 3px 8px;
+  }
+  .sub-info-text {
+    flex: 1;
+    min-width: 0;
+    font-size: 12px;
+    font-family: monospace;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sub-lock-btn {
+    flex-shrink: 0;
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: var(--card-bg3);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .sub-lock-btn:hover { background: rgba(108,99,255,0.15); color: var(--text-primary); }
+
+  /* ============ COPY ALL BUTTON ============ */
+  .copy-all-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: var(--card-bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Vazirmatn', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .copy-all-btn:hover { background: rgba(108,99,255,0.12); border-color: rgba(108,99,255,0.3); }
+
+  /* ============ CONFIGS LIST ============ */
+  .configs-list { display: flex; flex-direction: column; gap: 10px; }
+  .config-card {
+    background: var(--card-bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    transition: all 0.2s;
+  }
+  .config-card:hover { border-color: rgba(108,99,255,0.3); }
+  .config-left { display: flex; align-items: center; gap: 8px; min-width: 0; flex-wrap: wrap; }
+  .config-badge {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .config-name { font-size: 12px; font-weight: 700; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .config-actions { display: flex; gap: 6px; flex-shrink: 0; }
+  .config-btn {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: var(--card-bg3);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .config-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* Proto badge colors */
+  .proto-vless { background: rgba(129,140,248,0.16); color: #a5b4fc; }
+  .proto-vmess { background: rgba(192,132,252,0.16); color: #d8b4fe; }
+  .proto-trojan { background: rgba(244,114,182,0.16); color: #f9a8d4; }
+  .proto-ss { background: rgba(56,189,248,0.16); color: #7dd3fc; }
+  .proto-hy2 { background: rgba(52,211,153,0.16); color: #6ee7b7; }
+  .proto-tuic { background: rgba(251,191,36,0.16); color: #fcd34d; }
+  .proto-other { background: rgba(148,163,184,0.16); color: #cbd5e1; }
+  .net-badge { background: rgba(226,145,79,0.18); color: var(--orange); }
+  .sec-badge { background: rgba(45,212,191,0.16); color: #5eead4; }
+
+  .card.hidden, .hidden { display: none !important; }
+  .empty-msg-card {
+    background: var(--card-bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    text-align: center;
+    padding: 28px;
+  }
+
+  /* ============ DOWNLOAD CLIENTS ============ */
+  .clients-primary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .client-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 10px;
+    border-radius: 14px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  .client-btn-android { background: var(--blue); color: #fff; }
+  .client-btn-android:hover { background: #2a5fd6; }
+  .client-btn-ios { background: var(--card-bg3); color: var(--text-primary); border-color: var(--border); }
+  .client-btn-ios:hover { background: rgba(108,99,255,0.12); }
+  .client-btn i.chev { font-size: 11px; opacity: 0.8; }
+
+  .clients-secondary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .client-card-sm {
+    position: relative;
+    background: var(--card-bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .client-card-sm:hover { background: rgba(108,99,255,0.1); border-color: rgba(108,99,255,0.35); }
+  .client-icon-sm { font-size: 18px; }
+  .client-name-sm { font-size: 10px; font-weight: 700; color: var(--text-secondary); }
+
+  /* CLIENT DROPDOWN */
+  .client-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--card-bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    z-index: 50;
+    overflow: hidden;
+    margin-top: 6px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+  .client-dropdown.open { display: block; }
+  .client-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: background 0.15s;
+    border-bottom: 1px solid var(--border);
+    direction: rtl;
+  }
+  .client-dropdown a:last-child { border-bottom: none; }
+  .client-dropdown a:hover { background: rgba(108,99,255,0.12); color: var(--text-primary); }
+
+  /* ============ QR MODAL ============ */
+  .qr-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+  .qr-modal-overlay.show { display: flex; }
+  .qr-modal {
+    background: var(--card-bg2);
+    border: 1px solid var(--border-strong);
+    border-radius: 20px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-width: 320px;
+    width: 90%;
+  }
+  .qr-modal-title { font-size: 15px; font-weight: 700; color: var(--text-primary); }
+  .qr-modal-name { font-size: 12px; color: var(--text-secondary); text-align: center; }
+  .qr-white-box { background: #fff; border-radius: 12px; padding: 12px; }
+  .qr-close-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--card-bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Vazirmatn', sans-serif;
+    transition: all 0.2s;
+  }
+  .qr-close-btn:hover { background: rgba(255,255,255,0.1); color: var(--text-primary); }
+
+  /* ============ TOAST ============ */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #10b981;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 12px;
+    z-index: 999;
+    font-family: 'Vazirmatn', sans-serif;
+    box-shadow: 0 8px 32px rgba(16,185,129,0.4);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: slideUp 0.3s ease;
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+
+  /* Loading */
+  .loading-spinner {
+    display: inline-block;
+    width: 12px; height: 12px;
+    border: 2px solid rgba(255,255,255,0.25);
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* RESPONSIVE */
+  @media (max-width: 420px) {
+    .stats-grid { gap: 8px; }
+    .stat-box { padding: 10px; }
+    .circle-chart, .circle-chart svg { width: 100px; height: 100px; }
+    .clients-secondary { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- QR Modal Overlay -->
+<div class="qr-modal-overlay" id="qrModalOverlay">
+  <div class="qr-modal">
+    <div class="qr-modal-title" data-i18n="qrModalTitle">QR کد اشتراک</div>
+    <div class="qr-modal-name" id="qrModalName"></div>
+    <div class="qr-white-box">
+      <div id="qrModalCanvas"></div>
+    </div>
+    <button class="qr-close-btn" onclick="closeQrModal()" data-i18n="close">بستن</button>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-title">
+    <span data-i18n="pageHeading">جزئیات ساب‌اسکریپشن</span>
+    <span class="topbar-id" id="topbarSubId">--</span>
+  </div>
+  <div class="topbar-actions">
+    <button class="icon-circle-btn" id="langBtn" title="Language">
+      <i class="fas fa-globe" id="langIcon"></i>
+    </button>
+    <button class="icon-circle-btn" id="themeBtn" onclick="toggleTheme()">
+      <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN -->
+<div class="page-shell">
+  <div class="app-card">
+    <div class="app-card-inner">
+
+      <!-- PROFILE CARD -->
+      <div class="profile-card">
+        <div class="profile-card-head">
+          <i class="fas fa-id-badge"></i>
+          <span data-i18n="userProfile">پروفایل کاربر</span>
+        </div>
+        <div class="profile-card-body">
+          <div class="profile-left">
+            <div class="profile-avatar"><i class="fas fa-user"></i></div>
+            <div>
+              <div class="profile-label" data-i18n="emailLabel">ایمیل</div>
+              <div class="profile-value" id="clientEmail">کاربر</div>
+            </div>
+          </div>
+          <div class="profile-right">
+            <div class="profile-label" data-i18n="statusLabel">وضعیت</div>
+            <span class="status-pill" id="activeBadge">
+              <span class="loading-spinner" id="statusSpinner"></span>
+              <span id="activeBadgeText" data-i18n="checking">در حال بررسی...</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- USAGE ROW: ring + stats grid -->
+      <div class="usage-row">
+        <div class="ring-card">
+          <!-- SVG Defs for gradients -->
+          <svg width="0" height="0" style="position:absolute">
+            <defs>
+              <linearGradient id="cyanGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#00d4ff"/>
+                <stop offset="100%" stop-color="#0099ff"/>
+              </linearGradient>
+              <linearGradient id="greenGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#00e5a0"/>
+                <stop offset="100%" stop-color="#00b4d8"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="circle-chart">
+            <svg viewBox="0 0 110 110">
+              <circle class="circle-bg" cx="55" cy="55" r="46"/>
+              <circle class="circle-fg" cx="55" cy="55" r="46" id="volCircle"
+                stroke-dasharray="289.03" stroke-dashoffset="289.03"/>
+            </svg>
+            <div class="circle-center">
+              <span class="circle-pct" id="volPct">--%</span>
+            </div>
+          </div>
+          <div class="ring-sub" id="volSub">-- MB</div>
+          <!-- kept for i18n / calc compatibility, not shown -->
+          <span class="hidden" id="timePct">--%</span>
+          <span class="hidden" id="usedVal">--</span>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-label" data-i18n="downloadLabel">دانلود</div>
+            <div class="stat-value" id="statDownload">-- MB</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label" data-i18n="uploadLabel">آپلود</div>
+            <div class="stat-value" id="statUpload">-- MB</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label" data-i18n="remainingVolLabel">حجم باقی‌مانده</div>
+            <div class="stat-value" id="remainVal">--</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label" data-i18n="totalVolLabel">حجم کلی</div>
+            <div class="stat-value" id="usageTotalLabel">--</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- USAGE CARD wrapper kept for JS show/hide compatibility -->
+      <div class="hidden" id="usageCard"></div>
+
+      <!-- TIME REMAINING CARD -->
+      <div class="time-card">
+        <div class="time-label" data-i18n="timeRemainingLabel">مدت زمان باقی‌مانده</div>
+        <div class="time-value" id="timeSub">-- روز باقی‌مانده</div>
+        <div class="time-progress"><div class="time-progress-fill" id="timeProgressFill"></div></div>
+        <svg width="0" height="0" style="position:absolute">
+          <circle id="timeCircle" cx="0" cy="0" r="1" stroke-dasharray="6.28" stroke-dashoffset="6.28"/>
+        </svg>
+      </div>
+
+      <!-- DATES ROW -->
+      <div class="dates-row">
+        <div class="date-box">
+          <div class="date-label" data-i18n="endDateLabel">تاریخ پایان</div>
+          <div class="date-value" id="connExpireDate">--</div>
+        </div>
+        <div class="date-box">
+          <div class="date-label" data-i18n="activationDateLabel">تاریخ فعال‌سازی</div>
+          <div class="date-value" id="connActivateDate">--</div>
+        </div>
+      </div>
+
+      <!-- SUB INFO SECTION -->
+      <div class="section-title" data-i18n="subInfoTitle">اطلاعات ساب‌اسکریپشن</div>
+      <div class="sub-info-card">
+        <div class="sub-info-label" data-i18n="subLabel">ساب</div>
+        <div class="sub-info-row">
+          <span class="sub-chip">SUB</span>
+          <span class="sub-info-text" id="subLinkDisplay">vless://••••••••••••••••••••••••••••••••</span>
+          <button class="sub-lock-btn" id="eyeBtn" title="نمایش/مخفی" data-i18n-title="showHide"><i class="fas fa-lock"></i></button>
+        </div>
+      </div>
+
+      <!-- COPY LINK SECTION -->
+      <div class="section-title" data-i18n="copyLinkTitle">کپی لینک</div>
+      <button class="copy-all-btn" id="copyAllBtn">
+        <span data-i18n="copyAllConfigs">کپی تمام کانفیگ‌ها</span>
+        <i class="fas fa-copy"></i>
+      </button>
+
+      <!-- extra hidden controls kept for JS compatibility -->
+      <div class="hidden">
+        <button id="copySubBtn"></button>
+        <button id="qrHeroBtn"></button>
+        <button id="copyLinkBtn"></button>
+        <button id="shareBtn"></button>
+        <button id="showFullBtn"></button>
+        <span id="activeBadgeDup"></span>
+        <span id="connServer"></span>
+        <span id="connProto"></span>
+        <span id="connSecurity"></span>
+        <span id="connNet"></span>
+        <span id="connPing"></span>
+        <span id="connIP"></span>
+        <span id="lastUpdateText"></span>
+        <span id="countBadge"></span>
+        <span id="statusBadge"><span id="statusBadgeText"></span></span>
+      </div>
+
+      <!-- CONFIGS LIST -->
+      <div class="configs-section hidden" id="listWrap">
+        <div class="configs-list" id="list"></div>
+      </div>
+
+      <div class="empty-msg-card hidden" id="emptyMsgCard">
+        <i class="fas fa-circle-exclamation" style="font-size:26px;color:var(--text-muted);margin-bottom:10px;display:block;"></i>
+        <div style="color:var(--text-secondary);font-size:13px;" id="emptyMsg" data-i18n="noConfigs">کانفیگی پیدا نشد.</div>
+      </div>
+
+      <!-- DOWNLOAD CLIENTS -->
+      <div class="section-title" data-i18n="downloadClient">دانلود کلاینت</div>
+
+      <div class="clients-primary">
+        <div class="client-btn client-btn-android" id="androidCard">
+          <i class="fab fa-android"></i>
+          <span data-i18n="androidLabel">اندروید</span>
+          <i class="fas fa-chevron-down chev"></i>
+          <div class="client-dropdown" id="androidDrop">
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest" target="_blank"><i class="fas fa-download"></i> Hiddify <span data-i18n="recParen">(توصیه)</span></a>
+            <a href="https://github.com/2dust/v2rayNG/releases/latest" target="_blank"><i class="fas fa-download"></i> v2rayNG</a>
+            <a href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases/latest" target="_blank"><i class="fas fa-download"></i> NekoBox</a>
+          </div>
+        </div>
+        <div class="client-btn client-btn-ios" id="iosCard">
+          <i class="fab fa-apple"></i>
+          <span data-i18n="iosLabel">آی‌اواس</span>
+          <i class="fas fa-chevron-down chev"></i>
+          <div class="client-dropdown" id="iosDrop">
+            <a href="https://apps.apple.com/us/app/streisand/id6450534064" target="_blank"><i class="fas fa-download"></i> Streisand</a>
+            <a href="https://apps.apple.com/us/app/shadowrocket/id932747118" target="_blank"><i class="fas fa-download"></i> Shadowrocket</a>
+            <a href="https://apps.apple.com/us/app/v2box-v2ray-tool/id6446814690" target="_blank"><i class="fas fa-download"></i> V2Box</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="clients-secondary">
+        <div class="client-card-sm" id="linuxCard">
+          <div class="client-icon-sm">🐧</div>
+          <div class="client-name-sm">Linux</div>
+          <div class="client-dropdown" id="linuxDrop">
+            <a href="https://github.com/2dust/v2rayN/releases/latest" target="_blank"><i class="fas fa-download"></i> v2rayN (Linux)</a>
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest" target="_blank"><i class="fas fa-download"></i> Hiddify</a>
+            <a href="https://github.com/Qv2ray/Qv2ray/releases/latest" target="_blank"><i class="fas fa-download"></i> Qv2ray</a>
+          </div>
+        </div>
+        <div class="client-card-sm" id="macosCard">
+          <div class="client-icon-sm">🖥️</div>
+          <div class="client-name-sm">macOS</div>
+          <div class="client-dropdown" id="macosDrop">
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest" target="_blank"><i class="fas fa-download"></i> Hiddify</a>
+            <a href="https://github.com/yanue/V2rayU/releases/latest" target="_blank"><i class="fas fa-download"></i> V2rayU</a>
+            <a href="https://apps.apple.com/app/streisand/id6450534064" target="_blank"><i class="fas fa-download"></i> Streisand</a>
+          </div>
+        </div>
+        <div class="client-card-sm" id="windowsCard">
+          <div class="client-icon-sm">🪟</div>
+          <div class="client-name-sm">Windows</div>
+          <div class="client-dropdown" id="windowsDrop">
+            <a href="https://github.com/2dust/v2rayN/releases/latest" target="_blank"><i class="fas fa-download"></i> v2rayN</a>
+            <a href="https://github.com/hiddify/hiddify-next/releases/latest" target="_blank"><i class="fas fa-download"></i> Hiddify</a>
+            <a href="https://github.com/MatsuriDayo/nekoray/releases/latest" target="_blank"><i class="fas fa-download"></i> NekoRay</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ========================
+//  ELEMENT REFS
+// ========================
+const activeBadgeText  = document.getElementById('activeBadgeText');
+const activeBadge      = document.getElementById('activeBadge');
+const statusBadge      = document.getElementById('statusBadge');
+const statusBadgeText  = document.getElementById('statusBadgeText');
+const statusSpinner    = document.getElementById('statusSpinner');
+const usageCard        = document.getElementById('usageCard');
+const usedVal          = document.getElementById('usedVal');
+const remainVal        = document.getElementById('remainVal');
+const usageTotalLabel  = document.getElementById('usageTotalLabel');
+const statDownload     = document.getElementById('statDownload');
+const statUpload       = document.getElementById('statUpload');
+const volCircle        = document.getElementById('volCircle');
+const volPct           = document.getElementById('volPct');
+const volSub           = document.getElementById('volSub');
+const timeCircle       = document.getElementById('timeCircle');
+const timeProgressFill = document.getElementById('timeProgressFill');
+const timePct          = document.getElementById('timePct');
+const timeSub          = document.getElementById('timeSub');
+const connExpireDate   = document.getElementById('connExpireDate');
+const connActivateDate = document.getElementById('connActivateDate');
+const topbarSubId      = document.getElementById('topbarSubId');
+const listWrap         = document.getElementById('listWrap');
+const listEl           = document.getElementById('list');
+const countBadge       = document.getElementById('countBadge');
+const emptyMsgCard     = document.getElementById('emptyMsgCard');
+const emptyMsg         = document.getElementById('emptyMsg');
+const copyAllBtn       = document.getElementById('copyAllBtn');
+const copySubBtn       = document.getElementById('copySubBtn');
+const qrHeroBtn        = document.getElementById('qrHeroBtn');
+const copyLinkBtn      = document.getElementById('copyLinkBtn');
+const shareBtn         = document.getElementById('shareBtn');
+const showFullBtn      = document.getElementById('showFullBtn');
+const subLinkDisplay   = document.getElementById('subLinkDisplay');
+const eyeBtn           = document.getElementById('eyeBtn');
+const qrModalOverlay   = document.getElementById('qrModalOverlay');
+const qrModalCanvas    = document.getElementById('qrModalCanvas');
+const qrModalName      = document.getElementById('qrModalName');
+const connServer       = document.getElementById('connServer');
+const connProto        = document.getElementById('connProto');
+const connSecurity     = document.getElementById('connSecurity');
+const connNet          = document.getElementById('connNet');
+const connPing         = document.getElementById('connPing');
+const connIP           = document.getElementById('connIP');
+const lastUpdateText   = document.getElementById('lastUpdateText');
+
+let currentSubUrl = '';
+let showingFullLink = false;
+let qrInstance = null;
+let currentLang = 'fa';
+let cachedUsageHeader = null;
+let badgeState = { state: 'loading', key: 'checkingShort' };
+
+const I18N = {
+  fa: {
+    qrModalTitle: 'QR کد اشتراک', close: 'بستن', checking: 'در حال بررسی...', hello: '👋 سلام،',
+    heroSubtitle: 'از سرویس پرسرعت و امن ما لذت ببرید.', copySubLink: 'کپی لینک اشتراک', showQR: 'نمایش QR',
+    dataRemaining: 'باقی‌مانده حجم', subDuration: 'مدت اشتراک', remaining: 'باقی‌مانده',
+    lastUpdate: 'آخرین بروزرسانی:', checkingShort: 'در حال بررسی', subLink: 'لینک اشتراک',
+    showHide: 'نمایش/مخفی', share: 'اشتراک‌گذاری', showFull: 'نمایش کامل', copyLink: 'کپی لینک',
+    connInfo: 'اطلاعات اتصال', server: 'سرور', protocol: 'پروتکل', security: 'امنیت', network: 'شبکه',
+    ping: 'پینگ', serverIP: 'IP سرور', dataUsage: 'مصرف اینترنت', usedLabel: 'مصرف شده',
+    remainingLabel: '» باقی‌مانده', configs: 'کانفیگ‌ها', copyAll: 'کپی همه', noConfigs: 'کانفیگی پیدا نشد.',
+    downloadClient: 'دانلود کلاینت', selectVersion: 'انتخاب نسخه', recommended: 'توصیه شده',
+    recParen: '(توصیه)', support247: 'پشتیبانی ۲۴/۷', withYou: 'در کنار شما هستیم',
+    poweredBy: 'Powered by Hadi Panel', securityPriority: 'امنیت شما، اولویت ماست',
+    secureConn: 'اتصال امن با بالاترین سطح رمزنگاری', activeStatus: 'فعال',
+    fetchFailed: 'دریافت ناموفق', invalidLink: 'لینک نامعتبر', noConfigsFound: 'کانفیگی یافت نشد',
+    serviceActive: 'سرویس فعال', linkCopied: 'لینک کپی شد', subLinkCopied: 'لینک اشتراک کپی شد',
+    linkNotAvailable: 'لینک موجود نیست', allConfigsCopied: 'همه‌ی کانفیگ‌ها کپی شد', hideLink: 'مخفی‌کردن',
+    copyTitle: 'کپی', unlimited: 'نامحدود', of: 'از', to: 'تا', daysRemainingSuffix: 'روز باقی‌مانده',
+    usedSuffix: 'مصرف شده', twoMinAgo: '۲ دقیقه پیش', momentsAgo: 'چند لحظه پیش',
+    pageHeading: 'جزئیات ساب‌اسکریپشن', userProfile: 'پروفایل کاربر', emailLabel: 'ایمیل', statusLabel: 'وضعیت',
+    downloadLabel: 'دانلود', uploadLabel: 'آپلود', remainingVolLabel: 'حجم باقی‌مانده', totalVolLabel: 'حجم کلی',
+    timeRemainingLabel: 'مدت زمان باقی‌مانده', endDateLabel: 'تاریخ پایان', activationDateLabel: 'تاریخ فعال‌سازی',
+    subInfoTitle: 'اطلاعات ساب‌اسکریپشن', subLabel: 'ساب', copyLinkTitle: 'کپی لینک', copyAllConfigs: 'کپی تمام کانفیگ‌ها',
+    androidLabel: 'اندروید', iosLabel: 'آی‌اواس', daySuffix: 'روز', hourSuffix: 'ساعت', and: 'و'
+  },
+  en: {
+    qrModalTitle: 'Subscription QR Code', close: 'Close', checking: 'Checking...', hello: '👋 Hello,',
+    heroSubtitle: 'Enjoy our fast and secure service.', copySubLink: 'Copy Subscription Link', showQR: 'Show QR',
+    dataRemaining: 'Data Remaining', subDuration: 'Subscription Duration', remaining: 'Remaining',
+    lastUpdate: 'Last updated:', checkingShort: 'Checking', subLink: 'Subscription Link',
+    showHide: 'Show/Hide', share: 'Share', showFull: 'Show Full', copyLink: 'Copy Link',
+    connInfo: 'Connection Info', server: 'Server', protocol: 'Protocol', security: 'Security', network: 'Network',
+    ping: 'Ping', serverIP: 'Server IP', dataUsage: 'Data Usage', usedLabel: 'Used',
+    remainingLabel: '» Remaining', configs: 'Configs', copyAll: 'Copy All', noConfigs: 'No configs found.',
+    downloadClient: 'Download Client', selectVersion: 'Select Version', recommended: 'Recommended',
+    recParen: '(Recommended)', support247: 'Support 24/7', withYou: 'We are here for you',
+    poweredBy: 'Powered by Hadi Panel', securityPriority: 'Your security is our priority',
+    secureConn: 'Secure connection with top-level encryption', activeStatus: 'Active',
+    fetchFailed: 'Fetch failed', invalidLink: 'Invalid link', noConfigsFound: 'No configs found',
+    serviceActive: 'Service Active', linkCopied: 'Link copied', subLinkCopied: 'Subscription link copied',
+    linkNotAvailable: 'Link not available', allConfigsCopied: 'All configs copied', hideLink: 'Hide',
+    copyTitle: 'Copy', unlimited: 'Unlimited', of: 'of', to: 'to', daysRemainingSuffix: 'days remaining',
+    usedSuffix: 'used', twoMinAgo: '2 minutes ago', momentsAgo: 'a few moments ago',
+    pageHeading: 'Subscription Details', userProfile: 'User Profile', emailLabel: 'Email', statusLabel: 'Status',
+    downloadLabel: 'Download', uploadLabel: 'Upload', remainingVolLabel: 'Remaining', totalVolLabel: 'Total',
+    timeRemainingLabel: 'Time Remaining', endDateLabel: 'End Date', activationDateLabel: 'Activation Date',
+    subInfoTitle: 'Subscription Info', subLabel: 'Sub', copyLinkTitle: 'Copy Link', copyAllConfigs: 'Copy All Configs',
+    androidLabel: 'Android', iosLabel: 'iOS', daySuffix: 'd', hourSuffix: 'h', and: 'and'
+  }
+};
+
+function t(key) {
+  return (I18N[currentLang] && I18N[currentLang][key]) || I18N.fa[key] || key;
+}
+
+function applyI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.textContent = t(el.getAttribute('data-i18n'));
+  });
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    el.title = t(el.getAttribute('data-i18n-title'));
+  });
+  document.title = currentLang === 'fa' ? 'HADI VPN - اشتراک شما' : 'HADI VPN - Your Subscription';
+}
+
+// ========================
+//  HELPERS
+// ========================
+function toast(text, type='success') {
+  const el = document.createElement('div');
+  el.className = 'toast';
+  const colors = { success: '#10b981', error: '#ef4444', info: '#6c63ff' };
+  el.style.background = colors[type] || colors.success;
+  el.innerHTML = `<i class="fas fa-${type==='error'?'circle-exclamation':'check-circle'}"></i> ${text}`;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 2000);
+}
+
+function setBadge(state, text) {
+  const map = {
+    loading: { color:'#818cf8', bg:'rgba(108,99,255,0.14)', border:'rgba(108,99,255,0.3)', spinner: true },
+    active:  { color:'#22c55e', bg:'rgba(34,197,94,0.16)', border:'rgba(34,197,94,0.3)', spinner: false },
+    error:   { color:'#f87171', bg:'rgba(239,68,68,0.14)', border:'rgba(239,68,68,0.3)', spinner: false },
+  };
+  const cfg = map[state] || map.loading;
+  activeBadge.style.background = cfg.bg;
+  activeBadge.style.color = cfg.color;
+  activeBadge.style.borderColor = cfg.border;
+  statusSpinner.style.display = cfg.spinner ? 'inline-block' : 'none';
+  statusBadgeText.textContent = text;
+
+  if (state === 'active') {
+    activeBadgeText.textContent = t('activeStatus');
+  } else {
+    activeBadgeText.textContent = text;
+  }
+}
+
+function setStatus(text) { /* kept for compatibility */ }
+
+function b64decode(str) {
+  str = str.trim().replace(/-/g,'+').replace(/_/g,'/');
+  while(str.length % 4) str += '=';
+  try { return decodeURIComponent(escape(atob(str))); }
+  catch(e) { try { return atob(str); } catch(e2) { return ''; } }
+}
+
+function fmtBytes(bytes) {
+  if (!isFinite(bytes) || bytes < 0) return '-';
+  const units = ['B','KB','MB','GB','TB'];
+  let i = 0, v = bytes;
+  while (v >= 1024 && i < units.length-1) { v /= 1024; i++; }
+  return v.toFixed(v >= 10 ? 0 : 2) + ' ' + units[i];
+}
+
+const persianDigits = ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+function toFa(n) { if (currentLang !== 'fa') return String(n); return String(n).replace(/[0-9]/g, d => persianDigits[d]); }
+
+function toJalali(gy, gm, gd) {
+  const g_d_m = [0,31,59,90,120,151,181,212,243,273,304,334];
+  let jy;
+  if (gy <= 1600) { jy = 0; gy -= 621; } else { jy = 979; gy -= 1600; }
+  const gy2 = (gm > 2) ? (gy+1) : gy;
+  let days = (365*gy) + Math.floor((gy2+3)/4) - Math.floor((gy2+99)/100) + Math.floor((gy2+399)/400) - 80 + gd + g_d_m[gm-1];
+  jy += 33 * Math.floor(days/12053);
+  days %= 12053;
+  jy += 4 * Math.floor(days/1461);
+  days %= 1461;
+  if (days > 365) { jy += Math.floor((days-1)/365); days = (days-1)%365; }
+  const jm = (days < 186) ? 1 + Math.floor(days/31) : 7 + Math.floor((days-186)/30);
+  const jd = 1 + ((days < 186) ? (days%31) : ((days-186)%30));
+  return [jy, jm, jd];
+}
+
+function fmtJalaliDate(unixSeconds) {
+  const d = new Date(unixSeconds * 1000);
+  const [jy, jm, jd] = toJalali(d.getFullYear(), d.getMonth()+1, d.getDate());
+  return toFa(`${jy}/${String(jm).padStart(2,'0')}/${String(jd).padStart(2,'0')}`);
+}
+
+function fmtJalaliDateTime(unixSeconds) {
+  const d = new Date(unixSeconds * 1000);
+  const datePart = fmtJalaliDate(unixSeconds);
+  const timePart = toFa(`${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`);
+  return `${datePart}, ${timePart}`;
+}
+
+function setCircle(circleEl, pct) {
+  const r = 46;
+  const circ = 2 * Math.PI * r; // ~289.03
+  const offset = circ - (pct / 100) * circ;
+  circleEl.style.strokeDashoffset = offset;
+}
+
+// ========================
+//  SUBSCRIPTION LENGTH (10/15/30/60/90+ days)
+// ========================
+function getSubTotalDays(expire, now, daysRemain) {
+  try {
+    const subId = (currentSubUrl || window.location.href).split('?')[0];
+    const key = 'hadi-sub-start:' + subId + ':' + expire;
+    let firstSeen = parseInt(localStorage.getItem(key), 10);
+    if (!firstSeen) {
+      firstSeen = now;
+      localStorage.setItem(key, String(firstSeen));
+    }
+    const total = Math.ceil((expire - firstSeen) / 86400);
+    return { total: total > 0 ? total : Math.max(1, daysRemain), firstSeen };
+  } catch (e) {
+    return { total: Math.max(1, daysRemain), firstSeen: now };
+  }
+}
+
+// ========================
+//  USAGE INFO
+// ========================
+function renderUsageInfo(headerStr) {
+  cachedUsageHeader = headerStr;
+  if (!headerStr) { usageCard.classList.add('hidden'); return; }
+  const parts = {};
+  headerStr.split(';').forEach(p => {
+    const [k, v] = p.trim().split('=');
+    if (k && v !== undefined) parts[k.trim()] = parseInt(v.trim(), 10);
+  });
+  const used = (parts.upload || 0) + (parts.download || 0);
+  const total = parts.total || 0;
+  const expire = parts.expire || 0;
+  const remaining = total > 0 ? Math.max(0, total - used) : 0;
+
+  usageCard.classList.remove('hidden');
+
+  statDownload.textContent = fmtBytes(parts.download || 0);
+  statUpload.textContent = fmtBytes(parts.upload || 0);
+
+  if (total > 0) {
+    const remainPct = Math.max(0, Math.min(100, (remaining / total) * 100));
+    const usedPct = 100 - remainPct;
+    usedVal.textContent = fmtBytes(used);
+    remainVal.textContent = fmtBytes(remaining);
+    usageTotalLabel.textContent = fmtBytes(total);
+
+    // Volume ring shows USED percentage (matches "X% | Used: Y" design)
+    volPct.textContent = toFa(Math.round(usedPct * 10) / 10) + '%';
+    volSub.textContent = `${t('usedLabel')}: ${fmtBytes(used)}`;
+    setTimeout(() => setCircle(volCircle, usedPct), 100);
+  } else if (used > 0) {
+    usedVal.textContent = fmtBytes(used);
+    remainVal.textContent = t('unlimited');
+    usageTotalLabel.textContent = t('unlimited');
+    volPct.textContent = fmtBytes(used);
+    volSub.textContent = `${t('usedLabel')}: ${fmtBytes(used)}`;
+    setTimeout(() => setCircle(volCircle, 0), 100);
+  } else {
+    usedVal.textContent = '0';
+    remainVal.textContent = t('unlimited');
+    usageTotalLabel.textContent = t('unlimited');
+    volPct.textContent = '0%';
+    volSub.textContent = `${t('usedLabel')}: 0`;
+    setTimeout(() => setCircle(volCircle, 0), 100);
+  }
+
+  if (expire > 0) {
+    const now = Math.floor(Date.now() / 1000);
+    const daysRemain = Math.max(0, Math.ceil((expire - now) / 86400));
+    const { total: totalDays, firstSeen } = getSubTotalDays(expire, now, daysRemain);
+    const daysPct = Math.min(100, (daysRemain / Math.max(1, totalDays)) * 100);
+
+    timePct.textContent = toFa(Math.round(daysPct)) + '%';
+
+    const secsRemain = Math.max(0, expire - now);
+    const dRem = Math.floor(secsRemain / 86400);
+    const hRem = Math.floor((secsRemain % 86400) / 3600);
+    timeSub.textContent = `${toFa(dRem)} ${t('daySuffix')} ${t('and')} ${toFa(hRem)} ${t('hourSuffix')}`;
+
+    connExpireDate.textContent = fmtJalaliDateTime(expire);
+    connActivateDate.textContent = fmtJalaliDateTime(firstSeen);
+
+    connServer.textContent = 'IR - Tehran';
+    setTimeout(() => {
+      setCircle(timeCircle, daysPct);
+      timeProgressFill.style.width = Math.min(100, Math.max(0, daysPct)) + '%';
+    }, 200);
+  } else {
+    timePct.textContent = '∞';
+    timeSub.textContent = t('unlimited');
+    connExpireDate.textContent = t('unlimited');
+    connActivateDate.textContent = '--';
+    setTimeout(() => {
+      setCircle(timeCircle, 100);
+      timeProgressFill.style.width = '100%';
+    }, 200);
+  }
+}
+
+// ========================
+//  PROTOCOL PARSING
+// ========================
+function detectProto(uri) {
+  if (uri.startsWith('vless://'))   return {key:'vless', label:'VLESS', icon:'fa-bolt', cls:'proto-vless'};
+  if (uri.startsWith('vmess://'))   return {key:'vmess', label:'VMESS', icon:'fa-shuffle', cls:'proto-vmess'};
+  if (uri.startsWith('trojan://'))  return {key:'trojan', label:'TROJAN', icon:'fa-mask', cls:'proto-trojan'};
+  if (uri.startsWith('ss://'))      return {key:'ss', label:'SS', icon:'fa-lock', cls:'proto-ss'};
+  if (uri.startsWith('hysteria2://') || uri.startsWith('hy2://')) return {key:'hy2', label:'HY2', icon:'fa-cloud', cls:'proto-hy2'};
+  if (uri.startsWith('tuic://'))    return {key:'tuic', label:'TUIC', icon:'fa-satellite-dish', cls:'proto-tuic'};
+  return {key:'other', label:'???', icon:'fa-link', cls:'proto-other'};
+}
+
+function parseEntry(uri) {
+  const proto = detectProto(uri);
+  let name = proto.label;
+  let subtitle = '';
+  let host = '', port = '', net = '', security = '', ip = '';
+  try {
+    if (proto.key === 'vmess') {
+      const json = JSON.parse(b64decode(uri.replace('vmess://','')));
+      name = json.ps || proto.label;
+      host = json.add || '-';
+      port = json.port || '-';
+      net = json.net || 'tcp';
+      subtitle = `${host}:${port} · ${net}`;
+    } else {
+      const hashIdx = uri.indexOf('#');
+      if (hashIdx > -1) name = decodeURIComponent(uri.slice(hashIdx+1)) || proto.label;
+      const body = uri.split('://')[1] || '';
+      const beforeHash = body.split('#')[0];
+      const [userAndHost, queryStr] = beforeHash.split('?');
+      const afterAt = userAndHost.includes('@') ? userAndHost.split('@')[1] : userAndHost;
+      const parts = afterAt.split(':');
+      host = parts[0];
+      port = parts[1];
+      const qs = new URLSearchParams(queryStr || '');
+      net = qs.get('type') || 'tcp';
+      security = qs.get('security') || '';
+      subtitle = `${host || '-'}:${port || '-'} · ${net}`;
+    }
+  } catch(e) {}
+  return { uri, proto, name, subtitle, host, port, net, security };
+}
+
+// ========================
+//  UPDATE CONNECTION INFO
+// ========================
+function updateConnInfo(entries) {
+  if (!entries.length) return;
+  const first = entries[0];
+  connProto.textContent = first.proto.label;
+  if (first.host) connServer.textContent = first.host;
+  if (first.net) connNet.textContent = first.net.toUpperCase();
+  if (first.security) connSecurity.textContent = first.security.toUpperCase();
+  if (first.host) connIP.textContent = first.host;
+  const ping = Math.floor(Math.random() * 40) + 15;
+  connPing.textContent = toFa(ping) + ' ms';
+}
+
+// ========================
+//  RENDER ENTRIES
+// ========================
+function renderEntries(rawText) {
+  listEl.innerHTML = '';
+  const lines = rawText.split(/\r?\n/).map(l => l.trim()).filter(l => /^[a-z0-9]+:\/\//i.test(l));
+
+  if (lines.length === 0) {
+    listWrap.classList.add('hidden');
+    emptyMsgCard.classList.remove('hidden');
+    badgeState = { state: 'error', key: 'noConfigsFound' };
+    setBadge('error', t('noConfigsFound'));
+    return;
+  }
+
+  emptyMsgCard.classList.add('hidden');
+  listWrap.classList.remove('hidden');
+  badgeState = { state: 'active', key: 'serviceActive' };
+  setBadge('active', t('serviceActive'));
+
+  const entries = lines.map(parseEntry);
+  const emailEl = document.getElementById('clientEmail');
+  if (emailEl && entries.length) {
+    emailEl.textContent = entries[0].name;
+  }
+  countBadge.textContent = `(${toFa(entries.length)})`;
+  updateConnInfo(entries);
+
+  // Update sub link display
+  if (lines[0]) {
+    const masked = lines[0].substring(0, 12) + '••••••••••••••••••••••••••••••••';
+    subLinkDisplay.textContent = masked;
+    subLinkDisplay.dataset.full = lines[0];
+    subLinkDisplay.dataset.masked = masked;
+  }
+
+  // Update last update time
+  lastUpdateText.textContent = t('twoMinAgo');
+
+  entries.forEach((entry, idx) => {
+    const card = document.createElement('div');
+    card.className = 'config-card';
+    const netBadge = entry.net ? `<span class="config-badge net-badge">${entry.net.toUpperCase()}</span>` : '';
+    const secBadge = entry.security ? `<span class="config-badge sec-badge">${entry.security.toUpperCase()}</span>` : '';
+    card.innerHTML = `
+      <div class="config-left">
+        <span class="config-badge ${entry.proto.cls}">${entry.proto.label}</span>
+        ${netBadge}
+        ${secBadge}
+        <span class="config-name">${entry.name}</span>
+      </div>
+      <div class="config-actions">
+        <button class="config-btn qr-toggle" title="QR Code"><i class="fas fa-qrcode"></i></button>
+        <button class="config-btn copy-one" title="${t('copyTitle')}"><i class="fas fa-copy"></i></button>
+      </div>
+    `;
+    listEl.appendChild(card);
+
+    card.querySelector('.copy-one').addEventListener('click', (e) => {
+      e.stopPropagation();
+      navigator.clipboard.writeText(entry.uri).then(() => toast(t('linkCopied')));
+    });
+
+    card.querySelector('.qr-toggle').addEventListener('click', (e) => {
+      e.stopPropagation();
+      openQrModal(entry.uri, entry.name);
+    });
+  });
+}
+
+// ========================
+//  QR MODAL
+// ========================
+function openQrModal(uri, name) {
+  qrModalCanvas.innerHTML = '';
+  qrModalName.textContent = name || '';
+  qrModalOverlay.classList.add('show');
+  setTimeout(() => {
+    new QRCode(qrModalCanvas, {
+      text: uri,
+      width: 200,
+      height: 200,
+      colorDark: '#0B0E13',
+      colorLight: '#ffffff'
+    });
+  }, 50);
+}
+
+function closeQrModal() {
+  qrModalOverlay.classList.remove('show');
+  qrModalCanvas.innerHTML = '';
+}
+
+qrModalOverlay.addEventListener('click', (e) => {
+  if (e.target === qrModalOverlay) closeQrModal();
+});
+
+// ========================
+//  HERO QR BUTTON (kept for compatibility, no visible trigger)
+// ========================
+qrHeroBtn.addEventListener('click', () => {
+  const url = currentSubUrl || window.location.href;
+  openQrModal(url, t('subLink'));
+});
+
+// ========================
+//  SUB LINK ACTIONS
+// ========================
+copySubBtn.addEventListener('click', () => {
+  const text = window.__rawSub || currentSubUrl || '';
+  if (text) navigator.clipboard.writeText(text).then(() => toast(t('subLinkCopied')));
+  else toast(t('linkNotAvailable'), 'error');
+});
+
+copyLinkBtn.addEventListener('click', () => {
+  const text = window.__rawSub || currentSubUrl || '';
+  if (text) navigator.clipboard.writeText(text).then(() => toast(t('linkCopied')));
+  else toast(t('linkNotAvailable'), 'error');
+});
+
+shareBtn.addEventListener('click', () => {
+  const url = currentSubUrl || window.location.href;
+  if (navigator.share) {
+    navigator.share({ title: 'HADI VPN', url }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(url).then(() => toast(t('linkCopied')));
+  }
+});
+
+showFullBtn.addEventListener('click', () => {
+  showingFullLink = !showingFullLink;
+  const full = subLinkDisplay.dataset.full || '';
+  const masked = subLinkDisplay.dataset.masked || '';
+  subLinkDisplay.textContent = showingFullLink ? full : masked;
+});
+
+eyeBtn.addEventListener('click', () => {
+  showingFullLink = !showingFullLink;
+  const full = subLinkDisplay.dataset.full || '';
+  const masked = subLinkDisplay.dataset.masked || '';
+  subLinkDisplay.textContent = showingFullLink ? full : masked;
+  eyeBtn.innerHTML = showingFullLink ? '<i class="fas fa-lock-open"></i>' : '<i class="fas fa-lock"></i>';
+});
+
+// ========================
+//  COPY ALL
+// ========================
+copyAllBtn.addEventListener('click', () => {
+  navigator.clipboard.writeText(window.__rawSub || '').then(() => toast(t('allConfigsCopied')));
+});
+
+// ========================
+//  CLIENT DROPDOWNS
+// ========================
+const dropdownPairs = [
+  ['linuxCard', 'linuxDrop'],
+  ['macosCard', 'macosDrop'],
+  ['windowsCard', 'windowsDrop'],
+  ['iosCard', 'iosDrop'],
+  ['androidCard', 'androidDrop'],
+];
+dropdownPairs.forEach(([cardId, dropId]) => {
+  const card = document.getElementById(cardId);
+  const drop = document.getElementById(dropId);
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('a')) return;
+    const isOpen = drop.classList.contains('open');
+    document.querySelectorAll('.client-dropdown').forEach(d => d.classList.remove('open'));
+    if (!isOpen) drop.classList.add('open');
+  });
+});
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.client-card-sm') && !e.target.closest('.client-btn')) {
+    document.querySelectorAll('.client-dropdown').forEach(d => d.classList.remove('open'));
+  }
+});
+
+// ========================
+//  THEME TOGGLE
+// ========================
+let currentTheme = 'dark';
+function setTheme(t) {
+  currentTheme = t;
+  document.body.classList.toggle('light-theme', t === 'light');
+  document.getElementById('themeIcon').className = t === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+  try { localStorage.setItem('hadi-theme', t); } catch(e) {}
+}
+function toggleTheme() {
+  setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+}
+(function initTheme() {
+  let saved = 'dark';
+  try { saved = localStorage.getItem('hadi-theme') || 'dark'; } catch(e) {}
+  setTheme(saved);
+})();
+
+// ========================
+//  LANG TOGGLE
+// ========================
+function setLang(lang) {
+  currentLang = lang;
+  const htmlRoot = document.getElementById('htmlRoot');
+  htmlRoot.setAttribute('lang', lang);
+  htmlRoot.setAttribute('dir', lang === 'fa' ? 'rtl' : 'ltr');
+  applyI18n();
+  setBadge(badgeState.state, t(badgeState.key));
+  if (cachedUsageHeader) renderUsageInfo(cachedUsageHeader);
+  if (window.__rawSub) renderEntries(window.__rawSub);
+  try { localStorage.setItem('hadi-lang', lang); } catch(e) {}
+}
+document.getElementById('langBtn').addEventListener('click', () => {
+  setLang(currentLang === 'fa' ? 'en' : 'fa');
+});
+(function initLang() {
+  let saved = 'fa';
+  try { saved = localStorage.getItem('hadi-lang') || 'fa'; } catch(e) {}
+  setLang(saved);
+})();
+
+// ========================
+//  FETCH
+// ========================
+async function loadFromServer(idOrUrl) {
+  let url = idOrUrl;
+  if (!/^https?:\/\//i.test(idOrUrl)) {
+    const cleanId = idOrUrl.replace(/^\/+/, '').replace(/^(sub|rawsub|view)\//,'');
+    url = '/rawsub/' + cleanId;
+  }
+  currentSubUrl = url;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('fetch failed');
+  renderUsageInfo(res.headers.get('subscription-userinfo'));
+  const raw = await res.text();
+  let decoded = raw;
+  if (!/:\/\//.test(raw)) {
+    decoded = b64decode(raw);
+  }
+  window.__rawSub = decoded;
+  renderEntries(decoded);
+}
+
+// ========================
+//  INIT
+// ========================
+(function init() {
+  const params = new URLSearchParams(window.location.search);
+  let presetSub = params.get('sub') || params.get('id');
+  if (!presetSub) {
+    const m = window.location.pathname.match(/\/sub\/([^\/?#]+)/);
+    if (m) presetSub = m[1];
+  }
+  if (presetSub) {
+    topbarSubId.textContent = presetSub;
+    badgeState = { state: 'loading', key: 'checkingShort' };
+    setBadge('loading', t('checkingShort'));
+    loadFromServer(presetSub).catch(() => {
+      badgeState = { state: 'error', key: 'fetchFailed' };
+      setBadge('error', t('fetchFailed'));
+    });
+  } else {
+    badgeState = { state: 'error', key: 'invalidLink' };
+    setBadge('error', t('invalidLink'));
+    activeBadgeText.textContent = t('invalidLink');
+  }
+})();
+</script>
+</body>
+</html>
